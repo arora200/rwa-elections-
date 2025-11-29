@@ -1,0 +1,22 @@
+# Ignore the SQLite database file
+election.db
+
+# Ignore PHP error logs
+error.log
+
+# Ignore cache directory
+cache/
+
+# Ignore uploaded files (user documents, profile images)
+uploads/
+
+# Ignore Gemini-specific context file
+GEMINI.md
+
+# Ignore specific text files mentioned by the user
+*.txt
+task.txt
+workflow.txt
+
+# Ignore any temporary directories
+tmp/

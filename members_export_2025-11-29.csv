@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Management</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo">
+                <a href="dashboard.php">Aanchal Vihar Election Application</a>
+            </div>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                                            <li><a href="dashboard.php">Dashboard</a></li>
+                                                    <li><a href="register.php">Register Member</a></li>
+                                                                            <li><a href="verify_payments.php">Verify Payments</a></li>
+                                                                            <li><a href="verify_documents.php">Verify Documents</a></li>
+                            <li><a href="nominate.php">Nominate Candidate</a></li>
+                            <li><a href="verify_nominations.php">Verify Nominations</a></li>
+                            <li><a href="member_management.php">Member Management</a></li>
+                                                                            <li><a href="user_management.php">User Management</a></li>
+                                                <li class="user-info">
+                            <span>Welcome, superadmin (super_admin)</span>
+                            <a href="logout.php" class="btn btn-logout">Logout</a>
+                        </li>
+                                    </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="main-content">
+        <div class="container">
+ID,"Full Name","Unit/Flat Number",Email,"Contact Number",Status,"Registration Date"
+1,"Amit Kumar",A-101,amitkumar@example.com,9876543210,qualified_voter,"2025-11-29 08:01:21"
+2,"Sunita Sharma",B-202,sunitasharma@example.com,9876543211,accounts_verified,"2025-11-29 08:01:21"
+3,"Rajesh Verma",C-303,rajeshverma@example.com,9876543212,accounts_verified,"2025-11-29 08:01:21"
+4,"Priya Mehta",D-404,priyamehta@example.com,9876543213,accounts_rejected,"2025-11-29 08:01:21"
+5,"Vikram Singh",A-201,vikramsingh@example.com,9876543214,ro_rejected,"2025-11-29 08:01:21"
+6,"Anjali Gupta",B-302,anjaligupta@example.com,9876543215,qualified_voter,"2025-11-29 08:01:21"
+7,"Manoj Joshi",C-403,manojjoshi@example.com,9876543216,debarred,"2025-11-29 08:01:21"
+8,"Deepa Iyer",D-101,deepaiyer@example.com,9876543217,ceased_to_exist,"2025-11-29 08:01:21"
+9,"Sanjay Rawat",A-301,sanjayrawat@example.com,9876543218,accounts_verified,"2025-11-29 08:01:21"
+10,"Nisha Patel",B-402,nishapatel@example.com,9876543219,qualified_voter,"2025-11-29 08:01:21"
