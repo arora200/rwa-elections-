@@ -61,6 +61,7 @@ if ($loggedIn) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle ?? 'Election App'; ?></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuTT9Rk6nMT0WzHjG9oJ/zL/y6s/k/zLw6Z6aZ6cZ6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="css/style.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 </head>
@@ -68,15 +69,15 @@ if ($loggedIn) {
     <header class="main-header">
         <div class="container header-content">
             <div class="logo">
-                <a href="dashboard.php">Aanchal Vihar Election Application</a>
+                <a href="dashboard.php">Aanchal Vihar Election Tracking </a>
             </div>
-            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
-            <nav class="main-nav" id="main-nav">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" role="button" aria-expanded="false" aria-controls="main-nav">&#9776;</button>
+            <nav class="main-nav" id="main-nav" aria-label="Main navigation">
                 <ul>
                     <?php if ($loggedIn): ?>
                         <li><a href="dashboard.php">Dashboard</a></li>
                         <?php if ($role_name == 'data_entry' || $role_name == 'super_admin'): ?>
-                            <li><a href="register.php">Register Member</a></li>
+                            <li><a href="register.php">Register Aanchal Vihar Member</a></li>
                         <?php endif; ?>
                         <?php if ($role_name == 'accounts' || $role_name == 'super_admin'): ?>
                             <li><a href="verify_payments.php">Verify Payments</a></li>

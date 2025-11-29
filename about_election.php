@@ -14,7 +14,7 @@ $pageTitle = "About the Election";
     <header class="main-header">
         <div class="container header-content">
             <div class="logo">
-                <a href="index.php">Aanchal Vihar Election Application</a>
+                <a href="index.php">Aanchal Vihar Election  Details</a>
             </div>
             <nav class="main-nav">
                 <ul>
@@ -28,7 +28,7 @@ $pageTitle = "About the Election";
     </header>
     <main class="main-content">
         <div class="container">
-            <h2>About the RWA Election 2025</h2>
+            <h2>About the Aanchal Vihar RWA Election 2025</h2>
             <p>This page contains important details and dates for the upcoming Resident Welfare Association election.</p>
             
             <div class="election-timeline">

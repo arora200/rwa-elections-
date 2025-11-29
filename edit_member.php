@@ -161,16 +161,18 @@ $contact_number_val = $_POST['contact_number'] ?? $member['contact_number'];
 $member_email_val = $_POST['email'] ?? $member['email'];
 
 ?>
+<?php include 'includes/message.php'; ?>
+
+<?php
+$breadcrumbs = [
+    ['label' => 'Dashboard', 'link' => 'dashboard.php'],
+    ['label' => 'Member Management', 'link' => 'member_management.php'],
+    ['label' => 'Edit Member', 'link' => '']
+];
+include 'includes/breadcrumb.php';
+?>
 <h2>Edit Member: <?php echo htmlspecialchars($member['full_name']); ?></h2>
 <p>Use this form to edit the details for this member. Leave file inputs blank to keep current files.</p>
-
-<?php if (!empty($errors)): ?>
-    <div class="error-messages">
-        <?php foreach ($errors as $error): ?>
-            <p class="error"><?php echo htmlspecialchars($error); ?></p>
-        <?php endforeach; ?>
-    </div>
-<?php endif; ?>
 
 <form method="POST" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
@@ -236,7 +238,7 @@ $member_email_val = $_POST['email'] ?? $member['email'];
         <input type="file" id="new_aadhaar_card" name="new_aadhaar_card" accept=".pdf,image/jpeg,image/png">
     </div>
 
-    <div class="input-group">
+    <div class="form-actions">
         <button type="submit" class="btn">Update Member</button>
         <a href="member_management.php" class="btn btn-cancel">Cancel</a>
     </div>

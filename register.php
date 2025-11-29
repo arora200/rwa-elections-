@@ -225,12 +225,15 @@ $user_email_val = $_POST['user_email'] ?? '';
 
 ?>
         <h2>Register New Member</h2>
-        <?php if (!empty($success)): ?>
-            <p class="success"><?php echo $success; ?></p>
-        <?php endif; ?>
-        <?php if (!empty($error)): ?>
-            <p class="error"><?php echo $error; ?></p>
-        <?php endif; ?>
+<?php include 'includes/message.php'; ?>
+
+<?php
+$breadcrumbs = [
+    ['label' => 'Dashboard', 'link' => 'dashboard.php'],
+    ['label' => 'Register New Member', 'link' => '']
+];
+include 'includes/breadcrumb.php';
+?>
         <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
             
@@ -299,7 +302,7 @@ $user_email_val = $_POST['user_email'] ?? '';
                 <label for="member_email">Member Contact Email *</label>
                 <input type="email" id="member_email" name="member_email" value="<?php echo htmlspecialchars($member_email_val); ?>" required>
             </div>
-            <div class="input-group">
+            <div class="form-actions">
                 <button type="submit" class="btn">Register Member</button>
             </div>
         </form>

@@ -185,19 +185,22 @@ try {
 }
 ?>
 
+<?php
+// We need to pass the local $errors array and $success_message string to the message component
+$current_errors = $errors;
+$current_success = $success_message;
+include 'includes/message.php';
+?>
+
+<?php
+$breadcrumbs = [
+    ['label' => 'Dashboard', 'link' => 'dashboard.php'],
+    ['label' => 'User Management', 'link' => '']
+];
+include 'includes/breadcrumb.php';
+?>
+
 <h2>User Management</h2>
-
-<?php if (!empty($errors)): ?>
-    <div class="error-messages">
-        <?php foreach ($errors as $error): ?>
-            <p class="error"><?php echo htmlspecialchars($error); ?></p>
-        <?php endforeach; ?>
-    </div>
-<?php endif; ?>
-
-<?php if (!empty($success_message)): ?>
-    <p class="success"><?php echo htmlspecialchars($success_message); ?></p>
-<?php endif; ?>
 
 <div class="user-management-actions">
     <?php if ($edit_user): ?>
@@ -228,7 +231,7 @@ try {
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="input-group">
+            <div class="form-actions">
                 <button type="submit" class="btn">Update User</button>
                 <a href="user_management.php" class="btn btn-cancel">Cancel</a>
             </div>
@@ -259,7 +262,7 @@ try {
                     <?php endforeach; ?>
                 </select>
             </div>
-            <div class="input-group">
+            <div class="form-actions">
                 <button type="submit" class="btn">Add User</button>
             </div>
         </form>
@@ -288,9 +291,9 @@ try {
                             <td data-label="Email"><?php echo htmlspecialchars($user['email']); ?></td>
                             <td data-label="Role"><?php echo htmlspecialchars($user['role_name']); ?></td>
                             <td data-label="Actions" class="actions-cell">
-                                <a href="user_management.php?action=edit&id=<?php echo $user['id']; ?>" class="btn btn-edit btn-small">Edit</a>
+                                <a href="user_management.php?action=edit&id=<?php echo $user['id']; ?>" class="btn btn-edit btn-small" aria-label="Edit User"><i class="fas fa-edit"></i></a>
                                 <?php if ($user['id'] != $_SESSION['user_id']): // Prevent self-deletion ?>
-                                    <a href="user_management.php?action=delete&id=<?php echo $user['id']; ?>&csrf_token=<?php echo $csrf_token; ?>" class="btn btn-delete btn-small" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                                    <a href="user_management.php?action=delete&id=<?php echo $user['id']; ?>&csrf_token=<?php echo $csrf_token; ?>" class="btn btn-delete btn-small" onclick="return confirm('Are you sure you want to delete this user?');" aria-label="Delete User"><i class="fas fa-trash-alt"></i></a>
                                 <?php endif; ?>
                             </td>
                         </tr>

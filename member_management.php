@@ -110,20 +110,23 @@ try {
 
 ?>
 
+<?php
+// Pass local variables to the message component
+$current_errors = $errors;
+$current_success = $success_message;
+include 'includes/message.php';
+?>
+
+<?php
+$breadcrumbs = [
+    ['label' => 'Dashboard', 'link' => 'dashboard.php'],
+    ['label' => 'Member Management', 'link' => '']
+];
+include 'includes/breadcrumb.php';
+?>
+
 <h2>Member Management</h2>
 <p>Here you can view, edit, and manage all members in the system.</p>
-
-<?php if (!empty($errors)): ?>
-    <div class="error-messages">
-        <?php foreach ($errors as $error): ?>
-            <p class="error"><?php echo htmlspecialchars($error); ?></p>
-        <?php endforeach; ?>
-    </div>
-<?php endif; ?>
-
-<?php if (!empty($success_message)): ?>
-    <p class="success"><?php echo htmlspecialchars($success_message); ?></p>
-<?php endif; ?>
 
 <?php if ($is_super_admin): ?>
 <div class="page-actions">
@@ -174,14 +177,14 @@ try {
                             </form>
                             
                             <!-- Edit/Delete Buttons -->
-                            <a href="edit_member.php?id=<?php echo $member['id']; ?>" class="btn btn-edit btn-small">Edit</a>
+                            <a href="edit_member.php?id=<?php echo $member['id']; ?>" class="btn btn-edit btn-small" aria-label="Edit Member"><i class="fas fa-edit"></i></a>
                             
                             <?php if ($is_super_admin): ?>
                             <form method="POST" onsubmit="return confirm('Are you sure you want to mark this member as inactive?');" style="display: inline;">
                                 <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>">
                                 <input type="hidden" name="action" value="delete_member">
                                 <input type="hidden" name="member_id" value="<?php echo htmlspecialchars($member['id']); ?>">
-                                <button type="submit" class="btn btn-delete btn-small">Delete</button>
+                                <button type="submit" class="btn btn-delete btn-small" aria-label="Mark Member as Inactive"><i class="fas fa-trash-alt"></i></button>
                             </form>
                             <?php endif; ?>
                         </td>

@@ -28,7 +28,7 @@ $pageTitle = "Frequently Asked Questions";
     </header>
     <main class="main-content">
         <div class="container">
-            <h2>Frequently Asked Questions (FAQ) for the Aanchal Vihar Election Application</h2>
+            <h2>Frequently Asked Questions (FAQ) for the Aanchal Vihar Election </h2>
             
             <h3>I. Eligibility to Vote and Member Status</h3>
 
