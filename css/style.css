@@ -20,6 +20,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    line-height: 1.6; /* Improved readability */
+    font-size: 16px; /* Base font size */
 }
 
 .container {
@@ -32,7 +34,11 @@ body {
 h2 {
     color: var(--trust-blue);
     margin-bottom: 20px;
+    line-height: 1.2;
+    font-size: 2em;
 }
+h3 { font-size: 1.5em; margin-bottom: 15px; color: var(--trust-blue); }
+h4 { font-size: 1.2em; margin-bottom: 10px; color: var(--authority-gray); }
 
 .error {
     color: var(--error-red);
@@ -67,20 +73,46 @@ h2 {
 .input-group input[type="password"],
 .input-group input[type="email"],
 .input-group input[type="date"],
-.input-group select {
+.input-group select,
+.input-inline { /* Added .input-inline for consistency */
     width: 100%;
+    max-width: 400px; /* Constrain width on larger screens */
     padding: 10px;
     border: 1px solid var(--authority-gray);
     border-radius: 5px;
     box-sizing: border-box; /* Include padding in width */
     font-size: 1rem;
+    line-height: 1.5; /* Ensure good text alignment */
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="password"]:focus,
+.input-group input[type="email"]:focus,
+.input-group input[type="date"]:focus,
+.input-group select:focus,
+.input-inline:focus {
+    border-color: var(--trust-blue);
+    box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.2);
+    outline: none;
+}
+
+.input-group select {
+    cursor: pointer;
+    appearance: none; /* Remove default arrow on some browsers */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231e3a8a%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.6-6.4H18.6c-5%200-9.3%201.8-13.6%206.4-4.2%204.2-6.4%209.6-6.4%2016.4%200%206.8%202.2%2012.1%206.4%2016.4l123.6%20123.6c4.2%204.2%209.6%206.4%2016.4%206.4s12.1-2.2%2016.4-6.4L287%20102.2c4.2-4.2%206.4-9.6%206.4-16.4-.1-6.8-2.3-12.2-6.5-16.4z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;
+    padding-right: 2.5em; /* Make space for the custom arrow */
 }
 
 .input-group input[type="checkbox"] {
     margin-right: 10px;
 }
 
-.btn {
+.btn, .btn-small { /* Combined .btn and .btn-small as they share many properties */
+    display: inline-block; /* Ensures proper button layout, especially in forms */
     background-color: var(--trust-blue);
     color: var(--clarity-white);
     padding: 10px 15px;
@@ -88,11 +120,16 @@ h2 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    text-decoration: none; /* For links styled as buttons */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
-.btn:hover {
+.btn:hover, .btn-small:hover {
     background-color: #172554;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-success {
@@ -103,11 +140,11 @@ h2 {
     background-color: #12873a;
 }
 
-.btn-error {
+.btn-error, .btn-delete {
     background-color: var(--error-red);
 }
 
-.btn-error:hover {
+.btn-error:hover, .btn-delete:hover {
     background-color: #a31c1c;
 }
 
@@ -115,10 +152,23 @@ h2 {
     background-color: var(--authority-gray);
     margin-left: 15px;
 }
-
 .btn-logout:hover {
     background-color: #1f2937;
 }
+
+.btn-small {
+    padding: 7px 12px;
+    font-size: 0.9rem;
+}
+
+.btn-cancel {
+    background-color: #64748b; /* A neutral gray */
+    margin-left: 10px;
+}
+.btn-cancel:hover {
+    background-color: #475569;
+}
+
 
 /* Header Styling */
 .main-header {
@@ -132,6 +182,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px; /* Add padding to sides of header content */
 }
 
 .main-header .logo a {
@@ -161,7 +212,7 @@ h2 {
     transition: background-color 0.3s ease;
 }
 
-.main-nav ul li a:hover {
+.main-nav ul li a:hover, .main-nav ul li a.active {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
@@ -181,51 +232,140 @@ h2 {
     flex: 1; /* Allows content to grow and push footer down */
     padding: 20px 0;
 }
+.main-content > .container {
+    padding: 20px; /* Add padding to sides of main content */
+}
 
 /* Footer Styling */
 .main-footer {
-    background-color: var(--authority-gray);
-    color: var(--clarity-white);
+    background-color: var(--neutral-light-gray);
+    color: var(--authority-gray); /* Change text color for better contrast on light background */
     padding: 20px 0;
     text-align: center;
     margin-top: auto; /* Pushes footer to the bottom */
+    font-size: 0.9rem;
+}
+.main-footer p {
+    margin: 5px 0;
+}
+
+.social-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: var(--trust-blue);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--highlight-gold);
 }
 
 /* Table Styling */
-.data-table {
+.table-container {
+    margin-top: 20px;
+    background-color: var(--clarity-white);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* Ensures rounded corners apply to content */
+}
+.responsive-table { /* Renamed from .data-table to be consistent with responsive class */
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    margin-top: 0; /* Managed by .table-container */
 }
 
-.data-table th, .data-table td {
-    border: 1px solid #ddd;
+.responsive-table th, .responsive-table td {
+    border: 1px solid var(--neutral-light-gray);
     padding: 12px 15px;
     text-align: left;
 }
 
-.data-table th {
+.responsive-table th {
     background-color: var(--neutral-light-gray);
     color: var(--authority-gray);
     font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
 }
 
-.data-table tbody tr:nth-child(even) {
+.responsive-table tbody tr:nth-child(even) {
     background-color: var(--lightest-gray);
 }
 
-.data-table tbody tr:hover {
-    background-color: #f0f0f0;
+.responsive-table tbody tr:hover {
+    background-color: #e2e8f0; /* Lighter hover for rows */
 }
 
-.data-table td a {
+.responsive-table td a {
     color: var(--trust-blue);
     text-decoration: none;
+    font-weight: 500;
 }
 
-.data-table td a:hover {
+.responsive-table td a:hover {
     text-decoration: underline;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.75em;
+    font-weight: bold;
+    color: var(--clarity-white);
+    text-align: center;
+    min-width: 80px;
+}
+.status-pending { background-color: var(--warning-amber); }
+.status-documents-uploaded { background-color: #60a5fa; } /* Blue */
+.status-accounts-verified { background-color: var(--success-green); }
+.status-accounts-rejected { background-color: var(--error-red); }
+.status-ro-verified { background-color: #22c55e; } /* Darker Green */
+.status-ro-rejected { background-color: var(--error-red); }
+.status-qualified-voter { background-color: #16a34a; } /* Success Green */
+.status-disqualified { background-color: var(--authority-gray); }
+.status-debarred { background-color: #0f172a; } /* Darkest Gray */
+.status-ceased-to-exist { background-color: #78716c; } /* Stone Gray */
+.status-transferred { background-color: #a8a29e; } /* Light Stone Gray */
+.status-inactive { background-color: var(--authority-gray); }
+
+
+/* Form-specific styling for better alignment */
+.input-group-inline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+.input-group-inline label {
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+.input-group-inline input[type="text"],
+.input-group-inline select,
+.input-group-inline button {
+    flex-grow: 1; /* Allow items to grow */
+    max-width: none; /* Override max-width for inline elements */
+}
+
+
+/* Page Actions (e.g., Add New Member, Export) */
+.page-actions {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 /* --- Responsive Design --- */
